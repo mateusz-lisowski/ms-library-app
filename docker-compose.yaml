@@ -1,0 +1,35 @@
+services:
+
+  books-postgres:
+    container_name: ms-books-postgres
+    image: postgres:16.4-alpine3.20
+    environment:
+      POSTGRES_DB: 'books'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'password'
+    ports:
+      - '5430:5432'
+    restart: unless-stopped
+
+  members-postgres:
+    container_name: ms-members-postgres
+    image: postgres:16.4-alpine3.20
+    environment:
+      POSTGRES_DB: 'members'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'password'
+    ports:
+      - '5431:5432'
+    restart: unless-stopped
+
+  rents-postgres:
+    container_name: ms-rents-postgres
+    image: postgres:16.4-alpine3.20
+    environment:
+      POSTGRES_DB: 'rents'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'password'
+    ports:
+      - '5432:5432'
+    restart: unless-stopped
+
