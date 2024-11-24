@@ -1,9 +1,9 @@
 eureka:
   instance:
-    hostname: localhost
+    hostname: ms-discovery-server
   client:
     service-url:
-      default-zone: http://localhost:8761/eureka
+      defaultZone: http://ms-discovery-server:8761/eureka
 
 spring:
   cloud:
