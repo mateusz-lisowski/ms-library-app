@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: book-service
+          uri: lb:http://BOOK-SERVICE
+          predicates:
+            - Path=/api/v1/books/**
+        - id: member-service
+          uri: lb:http://MEMBER-SERVICE
+          predicates:
+            - Path=/api/v1/members/**
+        - id: rent-service
+          uri: lb:http://RENT-SERVICE
+          predicates:
+            - Path=/api/v1/rents/**
+
+server:
+  port: 8222
