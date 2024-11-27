@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/rents
+    url: jdbc:postgresql://ms-rents-postgres:5432/rents
     username: postgres
     password: password
     driver-class-name: org.postgresql.Driver
@@ -19,5 +19,5 @@ server:
 
 application:
   config:
-    books-url: http://localhost:8222/api/v1/books
-    members-url: http://localhost:8222/api/v1/members
+    books-url: http://ms-gateway:8222/api/v1/books
+    members-url: http://ms-gateway:8222/api/v1/members
