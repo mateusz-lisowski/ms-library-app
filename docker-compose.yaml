@@ -9,7 +9,6 @@ services:
       POSTGRES_PASSWORD: 'password'
     ports:
       - '5430:5432'
-    restart: unless-stopped
 
   members-postgres:
     container_name: ms-members-postgres
@@ -20,7 +19,6 @@ services:
       POSTGRES_PASSWORD: 'password'
     ports:
       - '5431:5432'
-    restart: unless-stopped
 
   rents-postgres:
     container_name: ms-rents-postgres
@@ -31,5 +29,75 @@ services:
       POSTGRES_PASSWORD: 'password'
     ports:
       - '5432:5432'
-    restart: unless-stopped
 
+  config-server:
+    container_name: ms-config-server
+    build:
+      context: ./config-server
+    ports:
+      - '8888:8888'
+    healthcheck:
+      test: "curl --fail --silent localhost:8888/actuator/health | grep UP || exit 1"
+      interval: 2s
+      timeout: 2s
+      retries: 30
+      start_period: 5s
+
+  discovery-server:
+    container_name: ms-discovery-server
+    build:
+      context: ./discovery-server
+    ports:
+      - '8761:8761'
+    healthcheck:
+      test: "curl --fail --silent localhost:8761/actuator/health | grep UP || exit 1"
+      interval: 2s
+      timeout: 2s
+      retries: 30
+      start_period: 5s
+    depends_on:
+      config-server:
+        condition: service_healthy
+
+  book-microservice:
+    container_name: ms-book-service
+    build:
+      context: ./book
+    ports:
+      - '8010:8010'
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      books-postgres:
+        condition: service_started
+
+  member-microservice:
+    container_name: ms-member-service
+    build:
+      context: ./member
+    ports:
+      - '8020:8020'
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      members-postgres:
+        condition: service_started
+
+  rent-microservice:
+    build:
+      context: ./rent
+    ports:
+      - '8030:8030'
+    depends_on:
+      - rents-postgres
+      - book-microservice
+      - member-microservice
+
+  gateway:
+    container_name: ms-gateway
+    build:
+      context: ./gateway
+    ports:
+      - '8222:8222'
+    depends_on:
+      - rent-microservice
