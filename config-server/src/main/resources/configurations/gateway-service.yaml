@@ -5,16 +5,19 @@ spring:
         locator:
           enabled: true
       routes:
+
         - id: book-service
-          uri: lb:http://BOOK-SERVICE
+          uri: http://ms-book-service:8010
           predicates:
             - Path=/api/v1/books/**
+
         - id: member-service
-          uri: lb:http://MEMBER-SERVICE
+          uri: http://ms-member-service:8020
           predicates:
             - Path=/api/v1/members/**
+
         - id: rent-service
-          uri: lb:http://RENT-SERVICE
+          uri: http://ms-rent-service:8030
           predicates:
             - Path=/api/v1/rents/**
 
