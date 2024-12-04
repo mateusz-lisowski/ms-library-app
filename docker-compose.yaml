@@ -84,6 +84,7 @@ services:
         condition: service_started
 
   rent-microservice:
+    container_name: ms-rent-service
     build:
       context: ./rent
     ports:
