@@ -7,3 +7,5 @@ Web app for library build with Spring Boot and Angular in microservices architec
 - API gateway
 - Postgres
 - Spring boot
+
+## How it works
