@@ -1,1 +1,28 @@
-<p>book-manage works!</p>
+<div style="display: flex; justify-content: center">
+  <section>
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <span>{{book?.id}}</span>
+      <img src="book.jpeg" width="320" height="240">
+      <span class="title">Title: <strong>{{book?.title}}</strong></span>
+      <span class="author">Author: <strong>{{book?.author}}</strong></span>
+    </div>
+    <h3>Update book</h3>
+    <form [formGroup]="updateForm" (submit)="submitForm()">
+      <div style="display: flex; flex-direction: row; gap: 16px; margin-bottom: 16px">
+        <div class="col">
+          <label for="title">Title: </label>
+          <label for="author">Author: </label>
+        </div>
+        <div class="col">
+          <input id="title" type="text" formControlName="bookTitle">
+          <input id="author" type="text" formControlName="bookAuthor">
+        </div>
+      </div>
+      <button type="submit">Update book</button>
+    </form>
+    <div>
+      <h3>Delete book</h3>
+      <button (click)="deleteBook()">Delete book</button>
+    </div>
+  </section>
+</div>
