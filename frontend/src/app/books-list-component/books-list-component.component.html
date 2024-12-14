@@ -1,3 +1,22 @@
-<section>
-  <app-book-details *ngFor="let book of booksList" [book]="book"></app-book-details>
+<section style="padding: 16px">
+  <h2>Add new book</h2>
+  <form [formGroup]="addForm" (submit)="submitForm()">
+    <div style="display: flex; flex-direction: row; gap: 16px; margin-bottom: 16px">
+      <div class="col">
+        <label for="id">UUID: </label>
+        <label for="title">Title: </label>
+        <label for="author">Author: </label>
+      </div>
+      <div class="col">
+        <input id="id" type="text" formControlName="bookId">
+        <input id="title" type="text" formControlName="bookTitle">
+        <input id="author" type="text" formControlName="bookAuthor">
+      </div>
+    </div>
+    <button type="submit">Add book</button>
+  </form>
+  <h2>List of all books</h2>
+  <div style="display: flex; flex-direction: column-reverse; gap: 16px">
+    <app-book-details *ngFor="let book of booksList" [book]="book"></app-book-details>
+  </div>
 </section>
