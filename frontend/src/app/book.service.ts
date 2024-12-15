@@ -6,7 +6,7 @@ import {Book} from './book';
 })
 export class BookService {
 
-  url = '/api/v1/books';
+  url = 'http://localhost:8222/api/v1/books';
 
   async getBooks(): Promise<Book[]> {
     const data = await fetch(this.url);
@@ -70,7 +70,7 @@ export class BookService {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('Success:', data);
+        console.log('Success, book deleted:', data);
       })
       .catch((error) => {
         console.error('Error:', error);
