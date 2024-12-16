@@ -1,1 +1,22 @@
-<p>members-list-component works!</p>
+<section style="padding: 16px">
+  <h2>Add new member</h2>
+  <form [formGroup]="addForm" (submit)="submitForm()">
+    <div style="display: flex; flex-direction: row; gap: 16px; margin-bottom: 16px">
+      <div class="col">
+        <label for="id">UUID: </label>
+        <label for="firstname">Firstname: </label>
+        <label for="lastname">Lastname: </label>
+      </div>
+      <div class="col">
+        <input id="id" type="text" formControlName="memberId">
+        <input id="firstname" type="text" formControlName="memberFirstname">
+        <input id="lastname" type="text" formControlName="memberLastname">
+      </div>
+    </div>
+    <button type="submit">Add member</button>
+  </form>
+  <h2>List of all members</h2>
+  <div style="display: flex; flex-direction: column-reverse; gap: 16px">
+    <app-member-details *ngFor="let member of membersList" [member]="member"></app-member-details>
+  </div>
+</section>
