@@ -1,0 +1,8 @@
+<div class="card">
+  <div class="content">
+    <span>{{member.id}}</span>
+    <img src="/fox.png" width="320" height="240">
+    <span class="title">{{member.firstname}} {{member.lastname}}</span>
+  </div>
+  <a [routerLink]="['/members', member.id]" style="margin: 16px">Details</a>
+</div>
