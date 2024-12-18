@@ -1,0 +1,44 @@
+<div style="display: flex; justify-content: center">
+  <section>
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <span>{{member?.id}}</span>
+      <img src="fox.png" width="320" height="240">
+      <span class="title">Firstname: <strong>{{member?.firstname}}</strong></span>
+      <span class="author">Lastname: <strong>{{member?.lastname}}</strong></span>
+    </div>
+    <h3>Update member</h3>
+    <form [formGroup]="updateForm" (submit)="submitForm()">
+      <div style="display: flex; flex-direction: row; gap: 16px; margin-bottom: 16px">
+        <div class="col">
+          <label for="firstname">Firstname: </label>
+          <label for="lastname">Lastname: </label>
+        </div>
+        <div class="col">
+          <input id="firstname" type="text" formControlName="memberFirstname">
+          <input id="lastname" type="text" formControlName="memberLastname">
+        </div>
+      </div>
+      <button type="submit">Update member</button>
+    </form>
+    <div>
+      <h3>Delete member</h3>
+      <button (click)="deleteMember()">Delete member</button>
+    </div>
+    <h2>Pending rents</h2>
+    <ul>
+      <li *ngFor="let rent of pendingMemberRents">
+        {{rent.id}}
+        <br>
+        Due date: {{rent.dueDate}}
+      </li>
+    </ul>
+    <h2>Completed rents</h2>
+    <ul>
+      <li *ngFor="let rent of returnedMemberRents">
+        {{rent.id}}
+        <br>
+        Return date: {{rent.returnDate}}
+      </li>
+    </ul>
+  </section>
+</div>
