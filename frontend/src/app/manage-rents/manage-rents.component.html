@@ -1,0 +1,30 @@
+<section style="margin: 16px">
+  <h2>Rent book</h2>
+  <form [formGroup]="rentBookForm" (submit)="submitBookRentForm()">
+    <div style="display: flex; flex-direction: row; gap: 16px; margin-bottom: 16px">
+      <div class="col">
+        <label for="bookId">Book Id: </label>
+        <label for="memberId">Member Id: </label>
+        <label for="dueDate">Due date: </label>
+      </div>
+      <div class="col">
+        <input id="bookId" type="text" formControlName="bookId">
+        <input id="memberId" type="text" formControlName="memberId">
+        <input id="dueDate" type="text" formControlName="dueDate">
+      </div>
+    </div>
+    <button type="submit">Rent</button>
+  </form>
+  <h2>Return rent</h2>
+  <form [formGroup]="returnBookForm" (submit)="submitReturnBookForm()">
+    <div style="display: flex; flex-direction: row; gap: 16px; margin-bottom: 16px">
+      <div class="col">
+        <label for="rentId">Rent Id: </label>
+      </div>
+      <div class="col">
+        <input id="rentId" type="text" formControlName="rentId">
+      </div>
+    </div>
+    <button type="submit">Return</button>
+  </form>
+</section>
