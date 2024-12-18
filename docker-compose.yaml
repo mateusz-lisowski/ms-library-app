@@ -102,3 +102,14 @@ services:
       - '8222:8222'
     depends_on:
       - rent-microservice
+
+  angular-app:
+    container_name: ms-angular-app
+    build:
+      context: ./frontend
+    ports:
+      - "4200:80"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - gateway
